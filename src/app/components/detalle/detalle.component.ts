@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SerivicioPeliculasService } from '../../service/serivicio-peliculas.service';
 import { PeliculasDetalle } from '../../interfaces/interfacesdetalle';
-import { Cast } from '../../interfaces/interfacesactores';
 import { ModalController } from '@ionic/angular';
+import { Cast } from '../../interfaces/interfacesactores';
 
 @Component({
   selector: 'app-detalle',

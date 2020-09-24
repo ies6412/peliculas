@@ -109,7 +109,7 @@
     <ion-slide *ngFor="let actores of PeliculaActores " >
       <ion-card class="card-actor" no-border>
        <img *ngIf="!actores.profile_path" src="/assets/no-avatar.jpg">
-       <img *ngIf="actores.profile_path" [src]="actores.profile_path | imagen">
+       <img *ngIf="actores.profile_path" [src]="actores.profile_path|imagen">
          <ion-label class="actor-name">{{actores.name}}</ion-label>
 
 
