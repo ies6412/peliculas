@@ -12,7 +12,7 @@ export class ImagenPipe implements PipeTransform {
   transform(img: string, size: string= 'w500', ): string {
 
     if (!img){
-      return './assets/sin_iamgen.jpg';
+      return './assets/sin_imagen.jpg';
     }
     const URLIMG = `${URL}/${size}${img}`;
     console.log(URLIMG);

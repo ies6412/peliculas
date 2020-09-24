@@ -12,7 +12,7 @@ export class ParesPipe implements PipeTransform {
            }
      return result;
     }, []);
-    console.log('resultado pares', pares);
+    // console.log('resultado pares', pares);
     return pares;
   }
 

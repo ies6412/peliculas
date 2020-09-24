@@ -26,15 +26,26 @@ export class Tab1Page implements OnInit {
 
  ngOnInit(){
   this.servicio.CargarPeliculas().subscribe(pelicula => {
-      console.log('respuesta', pelicula.results );
+     // console.log('respuesta', pelicula.results );
       this.Peliculas.push(...pelicula.results);
 
   });
-  this.servicio.PeliculasPopulares().subscribe(pelicula=>{
-    console.log('populares', pelicula.results);
-    this.Populares= pelicula.results;
-  });
 
+  this.getpopulares();
 
  }
+
+ cargarMas(){
+
+  this.getpopulares();
+
+}
+getpopulares(){
+
+  this.servicio.PeliculasPopulares().subscribe(pelicula => {
+   // console.log('populares', pelicula.results);
+    const arrtem = [...this.Populares, ...pelicula.results];
+    this.Populares = arrtem;
+  });
+}
 }

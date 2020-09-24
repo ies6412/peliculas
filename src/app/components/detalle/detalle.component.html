@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="regresar()"></ion-button>
+      <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      <ion-label>Regresar</ion-label>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label class="titulo">{{peliculadetalle.title}}</ion-label>
+
+  <img
+    [src]="peliculadetalle.backdrop_path | imagen"
+    *ngIf="peliculadetalle.backdrop_path"
+  >
+
+  <ion-grid fixed="fixed">
+    <ion-row>
+      <ion-col
+        size="4"
+        class="poster-detalle-sobre"
+      >
+        <ion-card class="poster"> <img
+          
+          [src]="peliculadetalle.poster_path | imagen"
+          *ngIf="peliculadetalle.poster_path"
+        ></ion-card>  
+     
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <ion-icon
+            slot="start"
+            name="ribbon-outline"
+            color="primary"
+          ></ion-icon>
+
+          <ion-label>Rating</ion-label>
+
+          <ion-note
+            slot="end"
+            color="primary"
+          >
+            {{peliculadetalle.vote_average}}
+          </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon
+            slot="start"
+            name="people-outline"
+            color="primary"
+          ></ion-icon>
+
+          <ion-label>Votos</ion-label>
+
+          <ion-note
+            slot="end"
+            color="primary"
+          >
+            {{peliculadetalle.vote_count}}
+          </ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>
+         {{peliculadetalle.overview |  slice:0:oculto }}...
+        </ion-label>
+        <ion-label color="primary" (click)="oculto=200" *ngIf="oculto !==200">Leer más!!!</ion-label>
+      </ion-col>
+      
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-chip *ngFor="let genero of peliculadetalle.genres" 
+        >
+      <ion-label color="primary">
+            {{genero.name}}
+
+      </ion-label>
+
+        </ion-chip>
+        
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>Actores</ion-label>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+  <ion-slides [options]="slidesactores">
+    <ion-slide *ngFor="let actores of PeliculaActores " >
+      <ion-card class="card-actor" no-border>
+       <img *ngIf="!actores.profile_path" src="/assets/no-avatar.jpg">
+       <img *ngIf="actores.profile_path" [src]="actores.profile_path | imagen">
+         <ion-label class="actor-name">{{actores.name}}</ion-label>
+
+
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="agregarafavorito()"></ion-button>
+      <ion-icon slot="start" name="star-outline"></ion-icon>
+      <ion-label>Agregar a Favorito</ion-label>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

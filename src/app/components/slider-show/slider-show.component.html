@@ -1,6 +1,10 @@
 <ion-slides [options]="slideopts">
-  <ion-slide *ngFor="let pelicula of peliculas">
-     <img [src]="pelicula.backdrop_path|imagen">
+  <ion-slide *ngFor="let pelicula of peliculas" >
+    <ion-card (click)="VerDetalle(pelicula.id)">
+        
+      <img [src]="pelicula.backdrop_path|imagen">
+    </ion-card>
+     
     
   </ion-slide>
 </ion-slides>

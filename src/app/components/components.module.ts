@@ -5,16 +5,23 @@ import { SliderShowComponent } from './slider-show/slider-show.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { SliderPosterComponent } from './slider-poster/slider-poster.component';
 import { SliderParesComponent } from './slider-pares/slider-pares.component';
+import { DetalleComponent } from './detalle/detalle.component';
 
 
 
 @NgModule({
-  declarations: [SliderShowComponent, SliderPosterComponent, SliderParesComponent],
+
+  entryComponents: [
+   DetalleComponent
+  ],
+
+  declarations: [SliderShowComponent, SliderPosterComponent, SliderParesComponent, DetalleComponent],
   imports: [
     CommonModule,
     IonicModule,
-    PipesModule
+    PipesModule,
+
   ],
-  exports: [SliderShowComponent, SliderPosterComponent, SliderParesComponent],
+  exports: [SliderShowComponent, SliderPosterComponent, SliderParesComponent, DetalleComponent],
 })
 export class ComponentsModule { }
