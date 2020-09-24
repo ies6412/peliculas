@@ -1,0 +1,39 @@
+<ion-content >
+  <ion-grid fixed="fixed">
+    <ion-row>
+      <ion-col>
+        <h3>Peliculas</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+ <!-- <ion-slides [options]="slideopts">
+    <ion-slide *ngFor="let pelicula of Peliculas">
+      <ion-card>
+        <ion-card-content>
+          <img [src]="pelicula.backdrop_path|imagen">
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>-->
+
+  <app-slider-show [peliculas]="Peliculas"></app-slider-show>
+  <ion-grid fixed="fixed">
+    <ion-row>
+      <ion-col>
+        <h3>Cartelera</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-slider-poster  [Pelis]="Peliculas"></app-slider-poster>
+  <ion-grid fixed="fixed">
+    <ion-row>
+      <ion-col>
+        <h3>Populares</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-slider-pares  [Pelis]="Populares"></app-slider-pares>
+
+
+</ion-content>
