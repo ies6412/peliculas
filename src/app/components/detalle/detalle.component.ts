@@ -29,7 +29,7 @@ export class DetalleComponent implements OnInit {
   ngOnInit() {
    // console.log('en modal', this.id);
     this.servicio.Detallepelicula(this.id).subscribe(respuesta => {
-      console.log('detalle', respuesta);
+      // console.log('detalle', respuesta);
       this.peliculadetalle = respuesta;
     });
 

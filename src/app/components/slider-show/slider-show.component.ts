@@ -25,7 +25,7 @@ slideopts = {
   ngOnInit() {}
 
   async VerDetalle(id: string){
-    console.log('pelicula', id);
+    // console.log('pelicula', id);
 
     const modal = await this.modalctrl.create({
      component: DetalleComponent,

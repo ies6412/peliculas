@@ -20,6 +20,7 @@ export interface Peliculas {
   vote_average: number;
   overview: string;
   release_date: string;
+
 }
 
 
