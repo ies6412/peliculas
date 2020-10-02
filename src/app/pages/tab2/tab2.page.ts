@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { SerivicioPeliculasService } from '../../service/serivicio-peliculas.service';
 import { Genre } from '../../interfaces/interfacesdetalle';
 import { IonInfiniteScroll, IonSearchbar, IonSegment, ModalController } from '@ionic/angular';
 
 import { InterfacesPeliculas, Peliculas } from '../../interfaces/interfaces-peliculas';
-import { Resultadoporgenero } from '../../interfaces/resultadoporgenero';
 
 import { DetalleComponent } from '../../components/detalle/detalle.component';
 import { send } from 'process';
@@ -26,7 +25,7 @@ export class Tab2Page implements OnInit {
               }
 
 
-  @ViewChild('segmento', { static: true})segmento: IonSegment;
+  @ViewChild('segmento', {static: true})segmento: IonSegment;
   @ViewChild('search', {static: true})search: IonSearchbar;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
@@ -53,11 +52,11 @@ export class Tab2Page implements OnInit {
 
 
    this.Servicios.GeneroPelicula().subscribe(respuesta => {
-     // console.log('respuesta', respuesta);
-      this.genero = respuesta.genres;
-      console.log('respuesta', respuesta.genres);
+     console.log('respuesta', respuesta);
+     this.genero = respuesta.genres;
+
+
     });
-    // this.buscarpeliculas();
 
   }
 
@@ -79,11 +78,13 @@ export class Tab2Page implements OnInit {
     }
 
   valordesegmento( event){
+    console.log(event);
     this.ssegment = true;
     this.valor = '';
     this.contador = 0;
     this.valorindice = event.detail.value;
     this.resultadogeneropeliculas = [];
+
     this.valorseg = this.genero[this.valorindice].id;
     console.log('valordesegmento-->', this.genero[this.valorindice].id);
     this.BuscarPorGenero(this.valorseg );
@@ -108,6 +109,12 @@ export class Tab2Page implements OnInit {
  }
 
  buscarportexto(nombrepelicula: string, event? ){
+
+
+
+
+  console.log('valor de segmento', this.valorseg);
+
 
   this.Servicios.TraerPeliculaPorNombre(nombrepelicula).subscribe(respuesta => {
        console.log(respuesta, respuesta.results.length);

@@ -41,6 +41,7 @@
     
   >
     <ion-segment-button
+    
       mode="md"
       *ngFor="let genero of genero; let indice=index"
       [value]="indice"
@@ -49,6 +50,10 @@
       <ion-label >{{genero.name}} </ion-label>
     </ion-segment-button>
   </ion-segment>
+
+
+
+  
 
 </ion-toolbar>
 <ion-content >
@@ -64,7 +69,7 @@
         <ion-card 
         (click)="VerDetalle(peligenero.id)">
           
-        <!--<img [src]="peligenero.backdrop_path|imagen">-->
+        <img [src]="peligenero.backdrop_path|imagen">
         
        <ion-card-subtitle >
         {{peligenero.release_date}}
