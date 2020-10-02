@@ -24,8 +24,9 @@ export class SerivicioPeliculasService {
   private Popularespagesnombre = 0;
   private Popularespagegenero = 0;
   private genero = 0;
+  private nombrepelicula = '';
 
-  constructor(private httpservicio: HttpClient ) { }
+  constructor(private httpservicio: HttpClient) { }
 
 
 
@@ -56,7 +57,7 @@ DetalleActores(id: string){
    return this.httpservicio.get<PeliculasDetalle>(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US`);
  }
 
- CargarPeliculasGenero(genero: number){
+ CargarPeliculasGenero(genero: number, pagina: number){
 
   const hoys = new Date();
   const ultimodias = new Date(hoys.getFullYear());
@@ -66,7 +67,7 @@ DetalleActores(id: string){
 
   if (this.genero === genero){
     // this.PageHeadlineCategorias=pagina;
-     this.Popularespagegenero++;
+     this.Popularespagegenero = pagina;
 
    }
    else
@@ -75,13 +76,24 @@ DetalleActores(id: string){
      this.genero = genero;
    }
 
+  console.log('pagina genero', this.Popularespagegenero);
 
   return this.httpservicio.get<InterfacesPeliculas>(`${Url}/discover/movie?&api_key=${apikey}&primary_release_date.gte=${hoy.getFullYear()}-01-01&primary_release_date.lte=2020-12-31&page=${this.Popularespagegenero}`);
 }
 
 TraerPeliculaPorNombre(nombre: string){
-  this.Popularespagesnombre++;
-  console.log('pagina', this.Popularespagesnombre);
+
+  if (this.nombrepelicula === nombre){
+    // this.PageHeadlineCategorias=pagina;
+    this.Popularespagesnombre++;
+   }
+   else
+   {
+     this.Popularespagesnombre = 1;
+     this.nombrepelicula = nombre;
+   }
+
+  console.log('pagina nombre', this.Popularespagesnombre, 'nombrepelicula', this.nombrepelicula, 'nombre', nombre);
 
   return this.httpservicio.get<InterfacesPeliculas>(`${Url}/search/movie?query=${nombre}&api_key=${apikey}&language=en-US&page=${this.Popularespagesnombre}&include_adult=false`);
 
