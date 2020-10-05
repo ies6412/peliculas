@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { InterfacesPeliculas } from '../interfaces/interfaces-peliculas';
 import { environment } from '../../environments/environment';
-import { PeliculasDetalle } from '../interfaces/interfacesdetalle';
+import { PeliculasDetalle, Genre } from '../interfaces/interfacesdetalle';
 import { PeliculaActores } from '../interfaces/interfacesactores';
+import { Observable } from 'rxjs';
 
 
 // tslint:disable-next-line: no-unused-expression
@@ -18,6 +19,7 @@ const Url = environment.url;
 })
 export class SerivicioPeliculasService {
   private Popularespages = 0;
+  generos: Genre[] = [];
 
   constructor(private httpservicio: HttpClient ) { }
 
@@ -44,6 +46,18 @@ DetalleActores(id: string){
   console.log('detalleactor', id);
   // tslint:disable-next-line: max-line-length
   return this.httpservicio.get<PeliculaActores>(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=f6566882055f3376040e49a1fec8bdb5&language=en-US`);
+ }
+
+ CargarGenerosFavorito(): Promise<Genre[]>{
+
+  return new Promise(resolve => {
+     this.httpservicio.get('https://api.themoviedb.org/3/genre/movie/list?a=1&api_key=f6566882055f3376040e49a1fec8bdb5&language=en-US')
+    .subscribe(respu => {
+
+      this.generos = respu['genres'];
+      resolve(this.generos);
+    });
+  });
  }
 
 

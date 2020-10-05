@@ -3,6 +3,8 @@ import { SerivicioPeliculasService } from '../../service/serivicio-peliculas.ser
 import { PeliculasDetalle } from '../../interfaces/interfacesdetalle';
 import { ModalController } from '@ionic/angular';
 import { Cast } from '../../interfaces/interfacesactores';
+import { Peliculas } from '../../interfaces/interfaces-peliculas';
+import { StoragepeliculaService } from '../../service/storagepelicula.service';
 
 @Component({
   selector: 'app-detalle',
@@ -15,6 +17,7 @@ export class DetalleComponent implements OnInit {
   peliculadetalle: PeliculasDetalle = {};
   oculto = 80;
   PeliculaActores: Cast[] = [];
+  estrella = 'star-outline';
 
   slidesactores = {
     slidesPerView: 3.2,
@@ -24,25 +27,37 @@ export class DetalleComponent implements OnInit {
   };
 
   constructor(private servicio: SerivicioPeliculasService,
-              private modalctrl: ModalController) { }
+              private modalctrl: ModalController,
+              private storage: StoragepeliculaService ) { }
 
-  ngOnInit() {
+ ngOnInit() {
+
+
+   this.storage.existePelicula(this.id).then(existe => this.estrella = (existe) ? 'star' : 'star-outline');
    // console.log('en modal', this.id);
-    this.servicio.Detallepelicula(this.id).subscribe(respuesta => {
+   this.servicio.Detallepelicula(this.id).subscribe(respuesta => {
       console.log('detalle', respuesta);
       this.peliculadetalle = respuesta;
     });
 
-    this.servicio.DetalleActores(this.id).subscribe(actores => {
+   this.servicio.DetalleActores(this.id).subscribe(actores => {
       console.log('actres', actores.cast);
       this.PeliculaActores = actores.cast;
     });
 
 
   }
-  agregarafavorito(){}
+
   regresar(){
     this.modalctrl.dismiss();
+  }
+
+  agregarafavorito(){
+   const existe = this.storage.storagefavorito(this.peliculadetalle);
+   this.estrella = (existe) ? 'star' : 'star-outline';
+
+
+
   }
 
 }
