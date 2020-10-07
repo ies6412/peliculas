@@ -17,11 +17,17 @@ const hoy = new Date();
 
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class SerivicioPeliculasService {
   private Popularespages = 0;
+   private Popularespagesnombre = 0;
+private Popularespagegenero = 0;
+private genero = 0;
+private nombrepelicula = '';
   generos: Genre[] = [];
 
   constructor(private httpservicio: HttpClient) { }
