@@ -64,4 +64,6 @@ DetalleActores(id: string){
  }
 
 
+ 
+
 }
