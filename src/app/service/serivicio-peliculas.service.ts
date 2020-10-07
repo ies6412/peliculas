@@ -70,6 +70,52 @@ DetalleActores(id: string){
  }
 
 
+ GeneroPelicula(){
+  return this.httpservicio.get<PeliculasDetalle>(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apikey}&language=en-US`);
+}
+
+CargarPeliculasGenero(genero: number, pagina: number){
+
+ const hoys = new Date();
+ const ultimodias = new Date(hoys.getFullYear());
+// console.log('ulyimo', hoy.getFullYear());
+
+
+
+ if (this.genero === genero){
+   // this.PageHeadlineCategorias=pagina;
+    this.Popularespagegenero = pagina;
+
+  }
+  else
+  {
+    this.Popularespagegenero = 1;
+    this.genero = genero;
+  }
+
+ console.log('pagina genero', this.Popularespagegenero);
+
+ return this.httpservicio.get<InterfacesPeliculas>(`${Url}/discover/movie?&api_key=${apikey}&primary_release_date.gte=${hoy.getFullYear()}-01-01&primary_release_date.lte=2020-12-31&page=${this.Popularespagegenero}`);
+}
+
+TraerPeliculaPorNombre(nombre: string){
+
+ if (this.nombrepelicula === nombre){
+   // this.PageHeadlineCategorias=pagina;
+   this.Popularespagesnombre++;
+  }
+  else
+  {
+    this.Popularespagesnombre = 1;
+    this.nombrepelicula = nombre;
+  }
+
+ console.log('pagina nombre', this.Popularespagesnombre, 'nombrepelicula', this.nombrepelicula, 'nombre', nombre);
+
+ return this.httpservicio.get<InterfacesPeliculas>(`${Url}/search/movie?query=${nombre}&api_key=${apikey}&language=en-US&page=${this.Popularespagesnombre}&include_adult=false`);
+
+
+}
  
 
 }
