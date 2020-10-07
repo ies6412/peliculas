@@ -1,12 +1,6 @@
-export interface InterfacesPeliculas {
-  page: number;
-  total_results: number;
-  total_pages: number;
-  results: Peliculas[];
-}
+export interface Resultadoporgenero {
 
-export interface Peliculas {
-  popularity: number;
+ popularity: number;
   vote_count: number;
   video: boolean;
   poster_path: string;
@@ -21,6 +15,6 @@ export interface Peliculas {
   overview: string;
   release_date: string;
 
+
+
 }
-
-

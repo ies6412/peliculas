@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { InterfacesPeliculas } from '../interfaces/interfaces-peliculas';
+import { InterfacesPeliculas, Peliculas } from '../interfaces/interfaces-peliculas';
 import { environment } from '../../environments/environment';
 import { PeliculasDetalle, Genre } from '../interfaces/interfacesdetalle';
 import { PeliculaActores } from '../interfaces/interfacesactores';
 import { Observable } from 'rxjs';
 
 
+
+
 // tslint:disable-next-line: no-unused-expression
 const apikey = environment.apikeypelicula;
 const Url = environment.url;
+const hoy = new Date();
 
 
 
@@ -21,13 +24,13 @@ export class SerivicioPeliculasService {
   private Popularespages = 0;
   generos: Genre[] = [];
 
-  constructor(private httpservicio: HttpClient ) { }
+  constructor(private httpservicio: HttpClient) { }
 
 
 
 CargarPeliculas(){
 
-  const hoy = new Date();
+  // const hoy = new Date();
   const ultimodia = new Date(hoy.getFullYear());
  // console.log('ulyimo', hoy.getFullYear());
 
@@ -40,12 +43,12 @@ PeliculasPopulares(){
 }
 
 Detallepelicula(id: string){
- return this.httpservicio.get<PeliculasDetalle>(`https://api.themoviedb.org/3/movie/${id}?api_key=f6566882055f3376040e49a1fec8bdb5&language=en-US`);
+ return this.httpservicio.get<PeliculasDetalle>(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`);
 }
 DetalleActores(id: string){
-  console.log('detalleactor', id);
+  // console.log('detalleactor', id);
   // tslint:disable-next-line: max-line-length
-  return this.httpservicio.get<PeliculaActores>(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=f6566882055f3376040e49a1fec8bdb5&language=en-US`);
+  return this.httpservicio.get<PeliculaActores>(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apikey}&language=en-US`);
  }
 
  CargarGenerosFavorito(): Promise<Genre[]>{

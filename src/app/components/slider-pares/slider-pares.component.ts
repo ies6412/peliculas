@@ -23,7 +23,7 @@ export class SliderParesComponent implements OnInit {
   }
   onclick(){
     this.cargarmas.emit();
-    //console.log('cargar mas');
+    // console.log('cargar mas');
   }
 
 }
