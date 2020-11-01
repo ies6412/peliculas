@@ -116,6 +116,6 @@ TraerPeliculaPorNombre(nombre: string){
 
 
 }
- 
+
 
 }
